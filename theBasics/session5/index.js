@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/admin", adminRoutes.router);
 app.use(shopRoutes);
 app.use((req, res, next) => {
-    res.sendFile(path.join(rootDir, 'views', '404.html'));
+    res.render('404');
 });
 
 app.listen(3001);
