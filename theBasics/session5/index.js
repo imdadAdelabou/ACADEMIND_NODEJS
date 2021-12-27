@@ -9,9 +9,10 @@ const expressHbs = require("express-handlebars");
 
 const app = express();
 
-app.engine('handlebars', expressHbs({ layoutsDir: 'views/layouts/', defaultLayout: 'main-layout' }));
-app.set('view engine', 'handlebars');
+// app.engine('handlebars', expressHbs({ layoutsDir: 'views/layouts/', defaultLayout: 'main-layout' }));
+// app.set('view engine', 'handlebars');
 // app.set('view engine', 'pug'); //In order to use pug engine
+app.set('view engine', 'ejs'); //In order to use ejs engine
 app.set('views', 'views');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -19,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/admin", adminRoutes.router);
 app.use(shopRoutes);
 app.use((req, res, next) => {
-    res.render('404');
+    res.render('404', { pageTitle: "404 error" });
 });
 
 app.listen(3001);
