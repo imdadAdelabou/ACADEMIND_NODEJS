@@ -11,6 +11,7 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.home = (req, res, next) => {
-    const products = Product.fetchAll();
-    res.render('shop', { prods: products, path: "/", hasProduct: products.length > 0, shopPage: true });
+    Product.fetchAll((products) => {
+        res.render('shop', { prods: products, path: "/", hasProduct: products.length > 0, shopPage: true });
+    });
 };
