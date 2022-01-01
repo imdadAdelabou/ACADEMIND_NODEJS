@@ -6,6 +6,7 @@ const adminRoutes = require("./routes/admin.js");
 const shopRoutes = require("./routes/shop.js");
 const rootDir = require("./utils/path.js");
 const expressHbs = require("express-handlebars");
+const ctrl = require("./controllers/404.js");
 
 const app = express();
 
@@ -19,9 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/admin", adminRoutes.router);
 app.use(shopRoutes);
-app.use((req, res, next) => {
-    res.render('404', { pageTitle: "404 error" });
-});
+app.use(ctrl.page404);
 
 app.listen(3001);
 
